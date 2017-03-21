@@ -5,7 +5,7 @@ import codecs
 from urllib.request import urlopen
 from urllib.parse import urlparse
 
-#---------------------------------
+#---------------------------------XXXXXXXXXXXXXX
 # Const
 constDateTime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
 #constUrl = 'http://www.google.co.kr'
