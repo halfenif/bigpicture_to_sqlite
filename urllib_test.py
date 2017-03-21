@@ -1,27 +1,37 @@
 import urllib
 import datetime
 import codecs
+import os
 
 from urllib.request import urlopen
 from urllib.parse import urlparse
 
-#---------------------------------XXXXXXXXXXXXXX
+#---------------------------------
 # Const
-constDateTime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+constDateTime = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 #constUrl = 'http://www.google.co.kr'
-constUrl = 'http://www.bostonglobe.com:80/rss/bigpicture'
-assert isinstance(urlparse(constUrl).netloc, object)
+#constUrl = 'http://www.bostonglobe.com:80/rss/bigpicture'
+constUrl = 'http://www.bostonglobe.com/news/bigpicture/2017/02/24/festival-defined/bG6YGhHkmd98vOMQ3QAAQJ/story.html'
 constUrlNetLoc = urlparse(constUrl).netloc.replace(':','_')
-print(constUrlNetLoc)
 
 constCharSet = 'UTF-8'
-constOutputFolder = './'
-constResponseFileFullPath = constOutputFolder + 'Response.' + constDateTime + '.txt'
+constOutputFolder = './output_response/'
+constResponseFileFullPath = constOutputFolder + 'Response.' + constUrlNetLoc + '.' + constDateTime + '.xml'
+
+#---------------------------------
+# Folder Safe
+try:
+    os.stat(constOutputFolder)
+except:
+    os.makedirs(constOutputFolder)
+
 #---------------------------------
 # Flow Control
 configWriteFile = 'Y'
 configPrint = 'N'
+
 #---------------------------------
+# Request Call
 objResponse = urlopen(constUrl)
 
 format, params = objResponse.getheader('Content-type').split(';')
@@ -36,7 +46,6 @@ print('ResponseCharSet:' + strResponseCharSet)
 
 if configWriteFile == 'Y':
     f = codecs.open(constResponseFileFullPath, 'w', strResponseCharSet)
-    #f = open(constResponseFileFullPath, 'w')
     f.write(strResponse)
     f.close()
     print('Response To File Writed: ' + constResponseFileFullPath)

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/bigpicture_to_sqlite.iml" filepath="$PROJECT_DIR$/.idea/bigpicture_to_sqlite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/urltest.iml" filepath="$PROJECT_DIR$/.idea/urltest.iml" />
     </modules>
   </component>
 </project>
