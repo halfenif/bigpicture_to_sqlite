@@ -1,4 +1,8 @@
 #-------------------
+# Description
+This is script for RSS Image(Boston Big Picture) to Local SQLITE Table(blob)
+
+#-------------------
 # Install Module
 pip install DBMS
 pip install beautifulsoup4
