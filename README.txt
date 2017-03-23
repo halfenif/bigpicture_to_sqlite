@@ -5,6 +5,7 @@ This is script for RSS Image(Boston Big Picture) to Local SQLITE Table(blob)
 #-------------------
 # Install Module
 pip install DBMS
+pip install feedparser
 pip install beautifulsoup4
 pip install lxml
 
@@ -12,6 +13,7 @@ pip install lxml
 
 #-------------------
 # Table Create
+# RUN db_create_table.py
 CREATE TABLE `tb_article` (
 	`seq`	INTEGER PRIMARY KEY AUTOINCREMENT,
 	`title`	TEXT,
