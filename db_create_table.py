@@ -1,6 +1,6 @@
 import dbms
-import time
-
+import os
+constOutputFolder = './output_dbms'
 constDBMS = './output_dbms/db_bigpicture.db'
 
 constDBArticle = (
@@ -24,14 +24,20 @@ constDBItem = (
 ")                                                                         "
 )
 
+#---------------------------------
+# Folder Safe
+try:
+    os.stat(constOutputFolder)
+except:
+    os.makedirs(constOutputFolder)
 
+#---------------------------------
+# Create Table
 conn = dbms.connect.sqlite(constDBMS)
 cur = conn.cursor()
+
 cur.execute(constDBArticle)
-
 cur.execute(constDBItem)
-
-
 
 conn.commit()
 conn.close()
