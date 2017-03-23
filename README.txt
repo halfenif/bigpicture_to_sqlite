@@ -40,3 +40,11 @@ feed_article.py
                                           >> Delete Item(by seq)
                                           LOOP: db_item.sqlInsert()
 
+
+
+#-------------------
+# Notice
+1. "pip install lxml" fail (my alpine linux failed)
+    Change htmllib_article.py
+    Before [soup_all = BeautifulSoup(strContent,'lxml')]
+    After  [soup_all = BeautifulSoup(strContent)]
