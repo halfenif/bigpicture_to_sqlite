@@ -30,7 +30,13 @@ def parseArticle(strContent, pseq):
 
     for item in allDiv:
         linkdata = 'http:' + urllib.parse.quote(item.img["src"])
-        textdata = item.find_next('div', attrs={"class": "gcaption geor"}).text
+
+        try:
+            textdata = item.find_next('div', attrs={"class": "gcaption geor"}).text
+        except Exception as err:
+            textdata = "Error"
+            print(err)
+
         rawdata = ""
 
         try:
