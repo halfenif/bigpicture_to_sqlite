@@ -1,7 +1,7 @@
-import dbms
 import time
+import dbms
+import const_dbms
 
-constDBMS = './output_dbms/db_bigpicture.db'
 constSQLInsert = 'INSERT INTO tb_article (title, link, pubdate) values (?, ?, ?)'
 constSQLSelect = 'SELECT SEQ FROM tb_article WHERE LINK = ?'
 constParamLink = 'http://www.bostonglobe.com/news/bigpicture/2017/03/01/globe-photos-month-february/Bkj6A440o1e84N44rszTqL/story.html'
@@ -10,8 +10,7 @@ constParamLink = 'http://www.bostonglobe.com/news/bigpicture/2017/03/01/globe-ph
 #---------------------------------
 # Exist Check
 def sqlExistCheck(link):
-    #print('sqlExistCheck')
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLSelect, (link,))
 
@@ -25,13 +24,12 @@ def sqlExistCheck(link):
 
 
 def sqlInsert(item):
-    #print('sqlInsert')
     result_title = item.title
     result_link = item.link
     result_published_time = time.gmtime(time.mktime(item.published_parsed))
     result_date_for_key = time.strftime('%Y%m%d%H%M%S', result_published_time)
 
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLInsert, (result_title, result_link, result_date_for_key,))
     cur.showStatement()
@@ -54,5 +52,3 @@ if __name__ == "__main__":
         print('Exist Data!')
     else:
         print('New Data')
-
-

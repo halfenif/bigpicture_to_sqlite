@@ -1,7 +1,6 @@
 import dbms
 import os
-constOutputFolder = './output_dbms'
-constDBMS = './output_dbms/db_bigpicture.db'
+import const_dbms
 
 constDBArticle = (
     "CREATE TABLE `tb_article` (                         "
@@ -24,16 +23,10 @@ constDBItem = (
 ")                                                                         "
 )
 
-#---------------------------------
-# Folder Safe
-try:
-    os.stat(constOutputFolder)
-except:
-    os.makedirs(constOutputFolder)
 
 #---------------------------------
 # Create Table
-conn = dbms.connect.sqlite(constDBMS)
+conn = const_dbms.get_conn()
 cur = conn.cursor()
 
 cur.execute(constDBArticle)

@@ -1,6 +1,6 @@
 import dbms
+import const_dbms
 
-constDBMS = './output_dbms/db_bigpicture.db'
 constSQLSelect = 'SELECT seq, link FROM tb_article'
 constSQLSelect = 'SELECT seq, link FROM tb_article'
 constSQLInsert = 'INSERT INTO tb_item (pseq, textdata, rawdata, linkdata) values (?, ?, ?, ?)'
@@ -8,14 +8,14 @@ constSQLDelete = 'DELETE FROM tb_item WHERE pseq = ?'
 
 
 def selectItemTest():
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLSelect + ' LIMIT 1')
     row = cur.fetchone()
     return row
 
 def sqlInsert(pseq, textdata, rawdata, linkdata):
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLInsert, (pseq, textdata, rawdata, linkdata, ))
     cur.showStatement()
@@ -24,7 +24,7 @@ def sqlInsert(pseq, textdata, rawdata, linkdata):
     return
 
 def sqlDeleteBypseq(pseq):
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLDelete, (pseq, ))
     cur.showStatement()

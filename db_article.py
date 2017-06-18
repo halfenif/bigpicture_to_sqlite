@@ -1,7 +1,7 @@
 import dbms
 import time
+import const_dbms
 
-constDBMS = './output_dbms/db_bigpicture.db'
 constSQLInsert = 'INSERT INTO tb_article (title, link, pubdate) values (?, ?, ?)'
 constSQLSelectForExistCheck = 'SELECT seq FROM tb_article WHERE link = ?'
 constSQLSelectForItemUpdate = 'SELECT seq, link FROM tb_article WHERE seq IN (SELECT seq FROM tb_article EXCEPT SELECT pseq seq FROM tb_item)'
@@ -11,8 +11,7 @@ constParamTestLink = 'http://www.bostonglobe.com/news/bigpicture/2017/03/01/glob
 #---------------------------------
 # SQL Exist Check
 def sqlExistCheck(link):
-    #print('sqlExistCheck')
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLSelectForExistCheck, (link,))
 
@@ -27,8 +26,7 @@ def sqlExistCheck(link):
 #---------------------------------
 # SQL Retrive Article for Item Update
 def sqlSelectArticleForItemUpdate():
-    #print('sqlExistCheck')
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLSelectForItemUpdate)
 
@@ -43,8 +41,7 @@ def sqlSelectArticleForItemUpdate():
 #---------------------------------
 # SQL Article Insert
 def sqlInsert(result_title, result_link, result_date_for_key):
-
-    conn = dbms.connect.sqlite(constDBMS)
+    conn = const_dbms.get_conn()
     cur = conn.cursor()
     cur.execute(constSQLInsert, (result_title, result_link, result_date_for_key,))
     cur.showStatement()
