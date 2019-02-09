@@ -4,6 +4,10 @@ This is script for RSS Image(Boston Big Picture) to Local SQLITE Table(blob)
 
 #-------------------
 # Install Module
+pip3 install requirements.txt
+
+or
+
 pip3 install DBMS
 pip3 install feedparser
 pip3 install beautifulsoup4
