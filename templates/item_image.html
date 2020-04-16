@@ -1,0 +1,39 @@
+<html>
+  <head></head>
+<body>
+<a href="/">Home</a>
+::
+{% if item.seq_before == "0" %}
+   <a href="/">  First</a> ::
+{% endif %}
+{% if item.seq_before != "0" %}
+  <a href="/item_image?pseq={{ item.pseq }}&seq={{ item.seq_before }}">{{ item.seq_before }}</a>
+  {% if item.seq_after != "0" %}
+  ::
+  {% endif %}
+{% endif %}
+
+
+{% if item.seq_after != "0" %}
+  <a href="/item_image?pseq={{ item.pseq }}&seq={{ item.seq_after }}"> {{ item.seq_after }}</a>
+{% endif %}
+
+{% if item.seq_after == "0" %}
+  :: 
+  <a href="/">Last</a>
+{% endif %}
+
+:: {{ item.pubdate }} :: {{ item.title }} :: This is Item Image from Big Picture Archive
+<hr>
+{{ item.textdata }}
+<br>
+
+{% if item.seq_after != "0" %}
+  <a href="/item_image?pseq={{ item.pseq }}&seq={{ item.seq_after }}">
+{% else %}
+  <a href="/">
+{% endif %}
+<img src="data:image/jpeg;base64,{{ item.data_uri }}" />
+</a>
+</body>
+</html>

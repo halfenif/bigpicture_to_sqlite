@@ -1,0 +1,12 @@
+This is Article List from Big Picture Archive
+<hr>
+<ul>
+  {% for item in articles %}
+    <li>
+      {{ item.pubdate }} &nbsp
+      <a href="/item_image?pseq={{ item.seq }}&seq={{item.firstitemseq}}">{{ item.title }} ({{ item.itemcount }}개)</a>
+    </li>
+  {% endfor %}
+</ul>
+<hr>
+Good Day!

@@ -1,0 +1,12 @@
+This is Item List from Big Picture Archive
+<hr>
+<ul>
+  {% for item in items %}
+    <li>
+      <a href="/item_image?pseq={{ item.pseq }}&seq={{ item.seq }}">{{ item.textdata }}</a>
+    </li>
+    <br>
+  {% endfor %}
+</ul>
+<hr>
+Good Day!
